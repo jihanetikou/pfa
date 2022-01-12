@@ -12,7 +12,7 @@ public class Statut {
     private Long id;
     private Long numero;
     private String description;
-    @OneToMany(targetEntity = Tache.class, mappedBy = "statut")
+    @OneToMany(targetEntity = Tache.class)
     @JsonManagedReference
     private List<Tache> taches;
 
