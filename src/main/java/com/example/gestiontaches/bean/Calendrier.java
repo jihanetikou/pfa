@@ -1,6 +1,8 @@
 package com.example.gestiontaches.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,8 +16,7 @@ public class Calendrier {
     private Date dateDebut;
     private Date dateFin;
     private int duree;
-    @OneToMany(targetEntity = Tache.class)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "calendrier")
     private List<Tache> taches;
 
     public Long getId() {return id;}
@@ -34,7 +35,20 @@ public class Calendrier {
 
     public void setDuree(int duree) { this.duree = duree;}
 
+    @JsonIgnore
     public List<Tache> getTaches() { return taches;}
 
+    @JsonSetter
     public void setTaches(List<Tache> taches) { this.taches = taches;}
+
+    @Override
+    public String toString() {
+        return "Calendrier{" +
+                "id=" + id +
+                ", dateDebut=" + dateDebut +
+                ", dateFin=" + dateFin +
+                ", duree=" + duree +
+                ", taches=" + taches +
+                '}';
+    }
 }
