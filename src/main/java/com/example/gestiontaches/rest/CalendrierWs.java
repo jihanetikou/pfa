@@ -31,6 +31,7 @@ public class CalendrierWs {
     @DeleteMapping("/")
     public void delete(Calendrier entity) { calendrierService.delete(entity);}
 
+    @PutMapping("/update/{id}")
     public Calendrier update(Long id, Calendrier calendrier) {
         return calendrierService.update(id, calendrier);
     }
