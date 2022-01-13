@@ -1,5 +1,6 @@
 package com.example.gestiontaches.service;
 
+import com.example.gestiontaches.bean.Statut;
 import com.example.gestiontaches.bean.Tache;
 import com.example.gestiontaches.bean.Utilisateur;
 import com.example.gestiontaches.dao.UtilisateurDao;
@@ -23,8 +24,8 @@ public class UtilisateurService {
         return utilisateurDao.save(utilisateur);
     }
 
-    public Optional<Utilisateur> findById(Long aLong) {
-        return utilisateurDao.findById(aLong);
+    public Utilisateur findById(Long aLong) {
+        return utilisateurDao.findById(aLong).get();
     }
 
     public void deleteById(Long aLong) {
@@ -33,5 +34,15 @@ public class UtilisateurService {
 
     public void delete(Utilisateur entity) {
         utilisateurDao.delete(entity);
+    }
+
+    public Utilisateur update(long id, Utilisateur utilisateur) {
+        Utilisateur utilisateur1=new Utilisateur();
+        utilisateur1=this.findById(id);
+        utilisateur1.setNom(utilisateur.getNom());
+        utilisateur1.setPrenom(utilisateur.getPrenom());
+        utilisateur1.setTaches(utilisateur.getTaches());
+        this.save(utilisateur1);
+        return utilisateur1;
     }
 }
