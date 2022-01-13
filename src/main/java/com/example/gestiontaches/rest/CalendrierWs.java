@@ -1,6 +1,7 @@
 package com.example.gestiontaches.rest;
 
 import com.example.gestiontaches.bean.Calendrier;
+import com.example.gestiontaches.bean.Statut;
 import com.example.gestiontaches.dao.CalendrierDao;
 import com.example.gestiontaches.service.CalendrierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,8 @@ public class CalendrierWs {
     public void delete(Calendrier entity) { calendrierService.delete(entity);}
 
     @PutMapping("/update/{id}")
-    public Calendrier update(Long id, Calendrier calendrier) {
+    public Calendrier update(@PathVariable long id, @RequestBody Calendrier calendrier) {
         return calendrierService.update(id, calendrier);
     }
+
 }
