@@ -1,14 +1,12 @@
 package com.example.gestiontaches.rest;
 
-import com.example.gestiontaches.bean.Tache;
+import com.example.gestiontaches.bean.Statut;
 import com.example.gestiontaches.bean.Utilisateur;
 import com.example.gestiontaches.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/utilisateur")
@@ -27,7 +25,7 @@ public class UtilisateurWs {
     }
 
     @GetMapping("/id/{id}")
-    public Optional<Utilisateur> findById(Long id) {
+    public Utilisateur findById(@PathVariable("id") Long id) {
         return utilisateurService.findById(id);
     }
 
@@ -40,4 +38,10 @@ public class UtilisateurWs {
     public void delete(Utilisateur entity) {
         utilisateurService.delete(entity);
     }
+
+    @PutMapping("/update/{id}")
+    public Utilisateur update(@PathVariable long id, @RequestBody Utilisateur utilisateur) {
+        return utilisateurService.update(id, utilisateur);
+    }
+
 }
