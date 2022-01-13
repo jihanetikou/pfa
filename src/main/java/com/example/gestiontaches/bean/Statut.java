@@ -8,12 +8,13 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Utilisateur {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Statut {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nom;
-    private String prenom;
-    @OneToMany(mappedBy = "utilisateur")
+    private Long numero;
+    private String description;
+    @OneToMany(mappedBy = "statut")
     private List<Tache> taches;
 
     public Long getId() {
@@ -24,22 +25,21 @@ public class Utilisateur {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public Long getNumero() {
+        return numero;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNumero(Long numero) {
+        this.numero = numero;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setDescription(String description) {
+        this.description = description;
     }
-
     @JsonIgnore
     public List<Tache> getTaches() {
         return taches;
@@ -52,10 +52,10 @@ public class Utilisateur {
 
     @Override
     public String toString() {
-        return "Utilisateur{" +
+        return "Statut{" +
                 "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
+                ", numero=" + numero +
+                ", description='" + description + '\'' +
                 ", taches=" + taches +
                 '}';
     }
