@@ -1,6 +1,8 @@
 package com.example.gestiontaches.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,8 +14,7 @@ public class Statut {
     private Long id;
     private Long numero;
     private String description;
-    @OneToMany(targetEntity = Tache.class)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "statut")
     private List<Tache> taches;
 
     public Long getId() {
@@ -39,11 +40,12 @@ public class Statut {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    @JsonIgnore
     public List<Tache> getTaches() {
         return taches;
     }
 
+    @JsonSetter
     public void setTaches(List<Tache> taches) {
         this.taches = taches;
     }
