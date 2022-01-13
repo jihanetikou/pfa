@@ -87,6 +87,14 @@ public class Tache {
         this.statut = statut;
     }
 
+    public Calendrier getCalendrier() {
+        return calendrier;
+    }
+
+    public void setCalendrier(Calendrier calendrier) {
+        this.calendrier = calendrier;
+    }
+
     @Override
     public String toString() {
         return "Tache{" +
@@ -96,8 +104,9 @@ public class Tache {
                 ", dateCreation=" + dateCreation +
                 ", idProject=" + idProject +
                 ", idTicket=" + idTicket +
-                ", utilisateur=" + utilisateur +
                 ", statut=" + statut +
+                ", utilisateur=" + utilisateur +
+                ", calendrier=" + calendrier +
                 '}';
     }
 }
