@@ -1,6 +1,7 @@
 package com.example.gestiontaches.bean;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,10 +15,11 @@ public class Tache {
     private Date dateCreation;
     private Long idProject;
     private Long idTicket;
-    @ManyToOne
-    @JoinColumn(nullable = false, name = "id_utilisateur")
-    @JsonBackReference
-    private  Utilisateur utilisateur;
+
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    private Statut statut;
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    private Utilisateur utilisateur;
 
     public Long getId() {
         return id;
@@ -75,6 +77,14 @@ public class Tache {
         this.utilisateur = utilisateur;
     }
 
+    public Statut getStatut() {
+        return statut;
+    }
+
+    public void setStatut(Statut statut) {
+        this.statut = statut;
+    }
+
     @Override
     public String toString() {
         return "Tache{" +
@@ -85,6 +95,7 @@ public class Tache {
                 ", idProject=" + idProject +
                 ", idTicket=" + idTicket +
                 ", utilisateur=" + utilisateur +
+                ", statut=" + statut +
                 '}';
     }
 }
