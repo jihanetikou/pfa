@@ -20,6 +20,8 @@ public class Tache {
     private Statut statut;
     @ManyToOne(cascade = CascadeType.REMOVE)
     private Utilisateur utilisateur;
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    private Calendrier calendrier;
 
     public Long getId() {
         return id;
